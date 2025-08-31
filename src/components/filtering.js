@@ -1,22 +1,29 @@
 
 export function initFiltering(elements) {
-  const updateIndexes = (els, indexes) => {
-    Object.keys(indexes).forEach((elementName) => {
-      const el = els[elementName];
-      if (!el) return;
+const updateIndexes = (els, indexes) => {
+  Object.keys(indexes).forEach((elementName) => {
+    const el = els[elementName];
+    if (!el) return;
 
-      el.replaceChildren();
+    el.replaceChildren();
 
-      const options = Object.values(indexes[elementName]).map((name) => {
-        const option = document.createElement('option');
-        option.value = name;
-        option.textContent = name;
-        return option;
-      });
 
-      el.append(...options);
+    const emptyOption = document.createElement('option');
+    emptyOption.value = '';
+    emptyOption.textContent = 'все';
+    el.appendChild(emptyOption);
+
+    const options = Object.values(indexes[elementName]).map((name) => {
+      const option = document.createElement('option');
+      option.value = name;
+      option.textContent = name;
+      return option;
     });
-  };
+
+    el.append(...options);
+  });
+};
+
 
   const applyFiltering = (query, state, action) => {
     if (action && action.name === 'clear') {

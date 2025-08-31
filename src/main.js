@@ -12,7 +12,7 @@ import { initSearching } from './components/searching.js';
 import { initTable } from "./components/table.js";
 
 
-const api = initData(sourceData);
+const api = initData();
 
 /**
  * Сбор и обработка полей из таблицы
